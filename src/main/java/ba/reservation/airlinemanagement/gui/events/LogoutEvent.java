@@ -10,12 +10,12 @@ import javafx.stage.Stage;
 public class LogoutEvent implements EventHandler<ActionEvent> {
 
     @Override
-    public void handle(ActionEvent event) {
+    public void handle(ActionEvent event){
         Controller.instance().setLoggedUser(null);
         Controller.instance().getStage().setTitle("Login");
         LoginView loginView = new LoginView();
         Controller.instance().setLoginView(loginView);
-        Scene scene = new Scene(loginView, 600, 180);
+        Scene scene = new Scene(loginView, 700, 400);
         Stage stage = new Stage();
         Controller.instance().getStage().setScene(scene);
     }

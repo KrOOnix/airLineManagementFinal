@@ -5,23 +5,12 @@ import ba.reservation.airlinemanagement.bussines.model.User;
 
 import java.util.List;
 
-public interface UserServiceLocal {
+public interface ClientServiceLocal {
 
-    User login(String username, String password);
+    List<Client> findAll();
 
-
-    List<User> findAll();
-
-    void create(User user);
-
-    void edit(User user);
-
-    void remove(User user);
-
+    void create(Client client);
+    void remove(Client client);
     void removeById(Integer id);
-
-    User find(Integer id);
-
-    }
-
-
+    Client find(Integer id);
+}

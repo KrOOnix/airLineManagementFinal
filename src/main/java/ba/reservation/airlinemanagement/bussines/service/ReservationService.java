@@ -1,22 +1,21 @@
 package ba.reservation.airlinemanagement.bussines.service;
-import ba.reservation.airlinemanagement.bussines.model.Privilege;
+
+import ba.reservation.airlinemanagement.bussines.model.Reservation;
 import ba.reservation.airlinemanagement.coomons.Constants;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-class PrivilegeService extends AbstractService<Privilege, Integer> implements PrivilegeServiceLocal {
+public class ReservationService extends AbstractService<Reservation,Integer>{
 
-
-    public PrivilegeService() {
-        super(Privilege.class);
+    public ReservationService() {
+        super(Reservation.class);
     }
 
     @Override
     protected EntityManager getEntityManager() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(Constants.PU_NAME);
+        EntityManagerFactory entityManagerFactory =  Persistence.createEntityManagerFactory(Constants.PU_NAME);
         return entityManagerFactory.createEntityManager();
     }
-
 }

@@ -5,13 +5,10 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="airlineManagementPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>ba.reservation.airlinemanagement.bussines.model.Address</class>
         <class>ba.reservation.airlinemanagement.bussines.model.Client</class>
-        <class>ba.reservation.airlinemanagement.bussines.model.Country</class>
         <class>ba.reservation.airlinemanagement.bussines.model.Plane</class>
         <class>ba.reservation.airlinemanagement.bussines.model.Privilege</class>
         <class>ba.reservation.airlinemanagement.bussines.model.Reservation</class>
-        <class>ba.reservation.airlinemanagement.bussines.model.Town</class>
         <class>ba.reservation.airlinemanagement.bussines.model.User</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/airline_management?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

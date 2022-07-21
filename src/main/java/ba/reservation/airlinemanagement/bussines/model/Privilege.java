@@ -17,9 +17,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author Grupa1
- */
+
 @Entity
 @Table(name = "privilege")
 @XmlRootElement
@@ -87,7 +85,7 @@ public class Privilege implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+
         if (!(object instanceof Privilege)) {
             return false;
         }

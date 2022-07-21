@@ -24,7 +24,7 @@ public class LoginEvent  implements EventHandler<ActionEvent> {
         }
         User user = UserServiceFactory.USER_SERVICE.getUserService().login(username, password);
         if (user == null) {
-            loginView.setLoginMessage("Nispravna kombinacija usernama i passworda");
+            loginView.setLoginMessage("Neispravna kombinacija usernama i passworda");
 
         } else {
 
@@ -34,14 +34,14 @@ public class LoginEvent  implements EventHandler<ActionEvent> {
             if ("admin".equalsIgnoreCase(privilege.getName())) {
                 mainPanel = new AdminView();
                 Controller.instance().setAdminView((AdminView) mainPanel);
-                Controller.instance().getStage().setTitle("Admin Panel: " + user.getName() + user.getSurname());
+                Controller.instance().getStage().setTitle("Admin Panel: " + user.getName()+ " "+ user.getSurname());
             } else {
                 mainPanel = new EmployeeView();
                 Controller.instance().setEmployeeView((EmployeeView) mainPanel);
-                Controller.instance().getStage().setTitle("Employe Panel: " + user.getName() + user.getSurname());
+                Controller.instance().getStage().setTitle("Employe Panel: " + user.getName()+ " " + user.getSurname());
             }
 
-            Scene scene = new Scene(mainPanel, 900, 500);
+            Scene scene = new Scene(mainPanel, 960, 400);
             Controller.instance().getStage().setScene(scene);
 
 

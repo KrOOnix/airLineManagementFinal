@@ -5,7 +5,7 @@ import ba.reservation.airlinemanagement.bussines.model.User;
 
 import javax.persistence.*;
 
-class UserService extends AbstractService<User> implements UserServiceLocal {
+class UserService extends AbstractService<User, Integer> implements UserServiceLocal {
 
     public UserService() {
         super(User.class);
@@ -35,6 +35,9 @@ class UserService extends AbstractService<User> implements UserServiceLocal {
         }
         return null;
     }
+
+
+
 
     @Override
     protected EntityManager getEntityManager() {

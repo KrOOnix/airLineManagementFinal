@@ -32,7 +32,7 @@ import java.util.List;
         @NamedQuery(name = "Reservation.findById", query = "SELECT r FROM Reservation r WHERE r.id = :id"),
         @NamedQuery(name = "Reservation.findByDate", query = "SELECT r FROM Reservation r WHERE r.date = :date"),
         @NamedQuery(name = "Reservation.findByPrice", query = "SELECT r FROM Reservation r WHERE r.price = :price"),
-        @NamedQuery(name = "Reservation.findByStatus", query = "SELECT r FROM Reservation r WHERE r.status = :status")})
+})
 public class Reservation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,16 +43,14 @@ public class Reservation implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @Column(name = "date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+  //  @Temporal(TemporalType.TIMESTAMP)
+    private String date;
 
     @Basic(optional = false)
     @Column(name = "price")
-    private BigDecimal price;
-    @Basic(optional = false)
-    @Column(name = "status")
-    private int status;
-    @JoinTable(name = "reservation_guest", joinColumns = {
+    private String price;
+
+    @JoinTable(name = "reservation_client", joinColumns = {
             @JoinColumn(name = "id_reservation", referencedColumnName = "id")}, inverseJoinColumns = {
             @JoinColumn(name = "id_client", referencedColumnName = "id")})
     @ManyToMany
@@ -71,14 +69,14 @@ public class Reservation implements Serializable {
         this.id = id;
     }
 
-    public Reservation(Integer id, Date date, BigDecimal price, int status, List<Client> clientList, Client idClient, Plane idPlane) {
+    public Reservation(Integer id, String date, String price, List<Client> clientList, Client idClient, Plane idPlane) {
         this.id = id;
         this.date = date;
         this.price = price;
-        this.status = status;
         this.clientList = clientList;
         this.idClient = idClient;
         this.idPlane = idPlane;
+
     }
 
     public Integer getId() {
@@ -89,29 +87,22 @@ public class Reservation implements Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     @XmlTransient
     public List<Client> getClientList() {
@@ -134,9 +125,10 @@ public class Reservation implements Serializable {
         return idPlane;
     }
 
-    public void setIdRoom(Plane idPlane) {
+    public void setIdPlane(Plane idPlane) {
         this.idPlane = idPlane;
     }
+
 
     @Override
     public int hashCode() {
@@ -147,7 +139,7 @@ public class Reservation implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+
         if (!(object instanceof Reservation)) {
             return false;
         }
@@ -158,16 +150,4 @@ public class Reservation implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "id=" + id +
-                ", date=" + date +
-                ", price=" + price +
-                ", status=" + status +
-                ", clientList=" + clientList +
-                ", idClient=" + idClient +
-                ", idPlane=" + idPlane +
-                '}';
-    }
 }

@@ -6,7 +6,6 @@ import ba.reservation.airlinemanagement.gui.employee.EmployeeView;
 import ba.reservation.airlinemanagement.gui.events.EventBus;
 import ba.reservation.airlinemanagement.gui.login.LoginView;
 import javafx.stage.Stage;
-
 public class Controller {
 
     private static Controller INSTANCE = null;
@@ -41,8 +40,11 @@ public class Controller {
         return loginView;
     }
 
-    public void setLoginView(LoginView loginView) {
+    public void setLoginView(LoginView loginView){
+        loginView.setStyle("-fx-background-color:#00FFFF");
         this.loginView = loginView;
+
+
     }
 
     public EmployeeView getEmployeeView() {
@@ -76,4 +78,7 @@ public class Controller {
     public Stage getStage() {
         return stage;
     }
+
 }
+
+

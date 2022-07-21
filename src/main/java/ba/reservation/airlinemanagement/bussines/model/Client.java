@@ -29,7 +29,14 @@ import javax.xml.bind.annotation.XmlTransient;
         @NamedQuery(name = "Client.findById", query = "SELECT c FROM Client c WHERE c.id = :id"),
         @NamedQuery(name = "Client.findByDocument", query = "SELECT c FROM Client c WHERE c.document = :document"),
         @NamedQuery(name = "Client.findByName", query = "SELECT c FROM Client c WHERE c.name = :name"),
-        @NamedQuery(name = "Client.findBySurname", query = "SELECT c FROM Client c WHERE c.surname = :surname")})
+        @NamedQuery(name = "Client.findBySurname", query = "SELECT c FROM Client c WHERE c.surname = :surname"),
+        @NamedQuery(name = "Client.findByCountry", query = "SELECT c FROM Client c WHERE c.country = :country"),
+        @NamedQuery(name = "Client.findByTown", query = "SELECT c FROM Client c WHERE c.town = :town"),
+        @NamedQuery(name = "Client.findByAddress", query = "SELECT c FROM Client c WHERE c.address = :address"),
+        @NamedQuery(name = "Client.findByHouseNumber", query = "SELECT c FROM Client c WHERE c.houseNumber = :houseNumber"),
+        @NamedQuery(name = "Client.findByPhoneNumber", query = "SELECT c FROM Client c WHERE c.phoneNumber = :phoneNumber"),
+        @NamedQuery(name = "Client.findByDestination", query = "SELECT c FROM Client c WHERE c.destination = :destination"),
+})
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,13 +54,38 @@ public class Client implements Serializable {
     @Basic(optional = false)
     @Column(name = "surname")
     private String surname;
+
+    @Basic(optional = false)
+    @Column(name = "country")
+    private String country;
+
+
+    @Basic(optional = false)
+    @Column(name = "town")
+    private String town;
+
+    @Basic(optional = false)
+    @Column(name = "address")
+    private String address;
+
+    @Basic(optional = false)
+    @Column(name = "houseNumber")
+    private Integer houseNumber;
+
+    @Basic(optional = false)
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
+
+    @Basic(optional = false)
+    @Column(name = "destination")
+    private String destination;
+
+
+
     @ManyToMany(mappedBy = "clientList")
     private List<Reservation> reservationList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClient")
     private List<Reservation> reservationList1;
-    @JoinColumn(name = "id_address", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Address idAddress;
 
     public Client() {
     }
@@ -62,11 +94,22 @@ public class Client implements Serializable {
         this.id = id;
     }
 
-    public Client(Integer id, String document, String name, String surname) {
+    public Client(Integer id, String document, String name, String surname, String country
+            , String town, String address, Integer houseNumber, String phoneNumber
+            , String destination) {
+
+
         this.id = id;
         this.document = document;
         this.name = name;
         this.surname = surname;
+        this.country = country;
+        this.town = town;
+        this.address = address;
+        this.houseNumber = houseNumber;
+        this.phoneNumber = phoneNumber;
+        this.destination = destination;
+
     }
 
     public Integer getId() {
@@ -101,6 +144,54 @@ public class Client implements Serializable {
         this.surname = surname;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getHouseNumber() {
+        return houseNumber;
+    }
+
+    public void setHouseNumber(Integer houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
     @XmlTransient
     public List<Reservation> getReservationList() {
         return reservationList;
@@ -119,13 +210,7 @@ public class Client implements Serializable {
         this.reservationList1 = reservationList1;
     }
 
-    public Address getIdAddress() {
-        return idAddress;
-    }
 
-    public void setIdAddress(Address idAddress) {
-        this.idAddress = idAddress;
-    }
 
     @Override
     public int hashCode() {
@@ -136,7 +221,7 @@ public class Client implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+
         if (!(object instanceof Client)) {
             return false;
         }
@@ -149,14 +234,6 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "Guest{" +
-                "id=" + id +
-                ", document='" + document + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", reservationList=" + reservationList +
-                ", reservationList1=" + reservationList1 +
-                ", idAddress=" + idAddress +
-                '}';
+        return name + " " + surname;
     }
 }
